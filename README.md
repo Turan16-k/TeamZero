@@ -150,3 +150,68 @@ Bu şartnameye göre geliştirilen motor, aşağıdaki üç sahne testinden baş
 1. **Full-Stack Mobil Dayanıklılık Testi:** Yapay zeka tarafından üretilmiş, içinde UI katmanından doğrudan SQL/Firestore çağrısı yapılan, boş `catch` blokları içeren ve sahte bir kütüphane talep eden mobil projeyi derleme anında durdurmalı ve mimari ihlalleri listelemelidir.
 2. **Pentester BOLA/Taint Testi:** Parametrik SQL kullanılmış olsa dahi, kullanıcı nesne ID'sini oturum token'ı ile doğrulamadan veri tabanına ileten endpoint'i veri akış grafiğiyle (DFG) yakalayıp süreci kırmalıdır.
 3. **Sıfır Hata Toleransı & Patch Doğrulaması:** Tespit ettiği SQL parametrelendirme ve boş catch blokları için ürettiği `.patch` dosyası uygulandığında projenin derlenebilirliğini bozmamalı ve GESI skorunu anında 85'in üzerine çıkarmalıdır.
+İşte şartnameye eklendiğinde projeyi standart bir denetim motoru olmaktan çıkarıp, **"Bunu yapan ekip kim, hemen yatırım yapalım / bünyemize katalım"** dedirtecek, jürinin ve kıdemli mimarların aklını başından alacak **Bonus & İleri Düzey İnovasyon Modülleri**:
+
+---
+
+## EK-A:BONUS VE VİZYON MODÜLLERİ
+
+
+### Bonus 1: Otonom "Sandbox Fuzzing & Exploit PoC" Simülatörü
+
+*Statik analiz sadece kodun yazılışını gösterir; bu modül ise bulunan açığın çalıştığını kanıtlar.*
+
+* **Nasıl Çalışır?** Motor kritik bir açık (örneğin SQLi, BOLA veya komut enjeksiyonu) tespit ettiğinde, arka planda izole edilmiş mikro bir sandbox (Docker/Wasm) ayağa kaldırır.
+* **Çıktı:** Geliştiriciye veya güvenlik uzmanına sadece *"Burada açık var"* demez; **"İşte bu açığı sömüren çalışan curl komutu ve exploit yükü (PoC - Proof of Concept)"** çıktısını verir.
+* **Etkisi:** Pentester için rapor yazma süresini sıfıra indirir, yazılımcının ise "Bu açık gerçekte çalışmaz ya" bahanesini anında çürütür.
+
+---
+
+### Bonus 2: "AI-Provenance & Hallucination Fingerprint" (Model Parmak İzi Tespiti)
+
+*Kodun hangi LLM tarafından, hangi bağlam körlüğüyle yazıldığını anlama motoru.*
+
+* **Nasıl Çalışır?** Farklı modellerin (Claude, GPT, DeepSeek, Cursor vb.) karakteristik kod yazma alışkanlıkları, yorum satırı şablonları ve tipik zaafiyet paternleri vardır. Motor, incelenen kodun sentaks stilinden hangi model ailesi tarafından üretildiğini tahmin eder.
+* **Proaktif Önlem:** İlgili modelin bilinen kronik hatalarına (örneğin *"Claude bu kütüphanede context timeout'ları unutmaya meyillidir"* veya *"GPT bu ORM'de N+1 sorgu problemi üretir"*) göre dinamik ek kural setlerini devreye sokar.
+
+---
+
+### Bonus 3: Terminal İçi Canlı "Ghost Refactor" (Interactive TUI HUD)
+
+*Terminali Matrix ekranına çeviren, geliştirici deneyimini (DX) zirveye taşıyan görsel katman.*
+
+* **Nasıl Çalışır?** Geliştirici `vibecheck watch` dediğinde arka planda bir daemon çalışır. Kod yazılırken terminalin bir köşesinde `ratatui` veya `bubbletea` ile render edilmiş siberpunk/minimalist bir dashboard açık kalır.
+* **Özellikler:**
+* Kod kalitesi düştükçe renk kırmızıya döner, GESI skoru canlı akar.
+* Hata yapıldığı anda terminalde `[TAB: Auto-Fix]` tuşuna basarak doğrudan editördeki satırları arka planda düzelten interaktif bir yama deneyimi sunar.
+
+
+
+---
+
+### Bonus 4: eBPF Tabanlı Sıfır Maliyetli Çalışma Zamanı (Runtime) Doğrulaması
+
+*Statik analizi doğrudan Linux Kernel seviyesinde dinamik gerçeklikle birleştiren mühendislik şaheseri.*
+
+* **Nasıl Çalışır?** Testler çalıştırılırken motor, arka planda hafif bir eBPF (Extended Berkeley Packet Filter) probu tetikler.
+* **Tespit:** Uygulamanın çalışırken işletim sisteminde dokunduğu dosya tanıtıcılarını, açtığı soketleri ve şifresiz aktarılan soket verilerini kernel seviyesinde dinler. Kodda gizlenmiş veya statik analizden kaçırılmış (obfuscated) kötü niyetli sistem çağrılarını anında yakalar.
+
+---
+
+### Bonus 5: Git "Commit Karma" ve Kurumsal Teknik Borç Tahmin Motoru
+
+*Yöneticiler, Tech Lead'ler ve yatırımcılar için finansal etki analizi.*
+
+* **Nasıl Çalışır?** Depodaki git geçmişini geriye dönük tarayarak, projedeki "teknik borcun" ve "güvenlik açığı birikiminin" zamana göre grafiğini çıkarır.
+* **Finansal Metrik:** *"Bu PR onaylanırsa, ileride bu spagetti kodu refactor etmek ekibinize ortalama 18 mühendis-saatine ve ~2.500$ teknik borç maliyetine mal olacak"* şeklinde somut, yöneticiyi ikna eden ROI (Yatırım Getirisi) raporları basar.
+
+---
+
+### Bonus Puanlama Matrisi (Hackathon & Proje Derecelendirmesi)
+
+| Bonus Modül | Teknik Zorluk Derecesi | Hedef Kitle Etkisi | Sağladığı Prestij |
+| --- | --- | --- | --- |
+| **Sandbox Fuzzing & PoC** | Çok Yüksek (Container/Wasm Orkestrasyonu) | Pentester & Güvenlik Liderleri | "Bu araç pentester'ın yerini alıyor" algısı |
+| **Interactive TUI HUD** | Orta (Sistem Dili UI Kütüphaneleri) | Geliştiriciler & X/GitHub Topluluğu | Anında viral olacak 30 saniyelik demo videoları |
+| **eBPF Kernel Probing** | İleri Düzey (Düşük Seviye Sistem Mühendisliği) | Kıdemli Sistem Mimarları & Jüriler | Teknik jüriden doğrudan tam puan |
+| **AI Fingerprinting** | Orta-Yüksek (Heuristic / Pattern Analizi) | AI Araştırmacıları | "Vibe coding çağının antitezi" hikayesi |
