@@ -205,8 +205,6 @@ Bu şartnameye göre geliştirilen motor, aşağıdaki üç sahne testinden baş
 * **Nasıl Çalışır?** Depodaki git geçmişini geriye dönük tarayarak, projedeki "teknik borcun" ve "güvenlik açığı birikiminin" zamana göre grafiğini çıkarır.
 * **Finansal Metrik:** *"Bu PR onaylanırsa, ileride bu spagetti kodu refactor etmek ekibinize ortalama 18 mühendis-saatine ve ~2.500$ teknik borç maliyetine mal olacak"* şeklinde somut, yöneticiyi ikna eden ROI (Yatırım Getirisi) raporları basar.
 
----
-
 ### Bonus Puanlama Matrisi (Hackathon & Proje Derecelendirmesi)
 
 | Bonus Modül | Teknik Zorluk Derecesi | Hedef Kitle Etkisi | Sağladığı Prestij |
